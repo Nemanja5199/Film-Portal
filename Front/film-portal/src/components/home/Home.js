@@ -1,12 +1,13 @@
 
 import React from "react";
-import Hero from "../hero/Hero";
+import Hero from "../hero/Hero.js";
+
 
 const Home= ({movies})=> {
 
     return (
 
-        <Hero movies= {movies} />
+        <Hero movies = {movies} />
     )
 }
 
