@@ -1,0 +1,21 @@
+/* Remove outline for links within buttons */
+.btn-link-style:focus,
+.btn-link-style:active {
+  outline: none;
+}
+
+/* Style the links within buttons */
+.btn-link-style {
+  color: rgba(5, 161, 252, 0.959);
+  text-decoration: none;
+}
+
+/* Style the links within buttons when hovered */
+.btn-link-style:hover {
+  color: darkblue;
+}
+
+.navbar {
+    margin-top: 0;
+    padding-top: 0;
+  }

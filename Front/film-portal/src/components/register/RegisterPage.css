@@ -1,0 +1,44 @@
+/* RegisterPage.css */
+
+/* Center the register container */
+.register-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: black;
+  }
+  
+  /* Style for the register form */
+  .register-form {
+    width: 300px;
+    padding: 20px;
+    background-color: rgb(0, 0, 0);
+    border-radius: 10px;
+  }
+  
+  /* Gold-colored register header */
+  .register-header {
+    color: gold;
+  }
+  
+  /* Center the register button */
+  .register-button {
+    display: flex;
+    justify-content: center;
+  }
+  
+  /* Adjust input box size */
+  .form-control {
+    width: 100%;
+    background-color: black;
+    color: white;
+    border-color: gold;
+  }
+  
+  /* Style for login link */
+  .login-link {
+    text-align: center;
+    color: white;
+  }
+  
