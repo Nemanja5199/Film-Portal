@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import './RegisterPage.css'; // Import your CSS file for custom styling
+import './RegisterPage.css'; 
 
 const RegisterPage = () => {
   return (
