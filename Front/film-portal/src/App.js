@@ -22,7 +22,7 @@ function App() {
     try
     {
 
-      const response = await api.get("/api/v1/films");
+      const response = await api.get("/api/v1/movies");
 
       setMovies(response.data);
 
@@ -37,7 +37,7 @@ function App() {
      
     try 
     {
-        const response = await api.get(`/api/v1/films/${movieId}`);
+        const response = await api.get(`/api/v1/movies/${movieId}`);
 
         const singleMovie = response.data;
 

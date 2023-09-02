@@ -41,4 +41,15 @@
     text-align: center;
     color: white;
   }
+
+  .error-box {
+    background-color: red;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    font-size: 14px;
+    /* Add any additional styles you want here */
+  }
+  
   
