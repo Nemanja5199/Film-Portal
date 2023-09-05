@@ -57,10 +57,64 @@
     transition: 0.3s;
     cursor: pointer;
 }
+
+.watchlist-button-icon-container{
+
+    padding:0px;
+    margin:0px;
+    width:150px;
+
+}
+
+
+.watchlist-button-icon{
+
+    padding:0px;
+    margin:0px;
+    color:gold;
+    font-size: 3rem;
+    transition: 0.3s;
+    cursor: pointer;
+
+}
+
+
+.comments-button-icon-container{
+
+    padding:0px;
+    margin:0px;
+    width:150px;
+
+
+}
+
+.comments-button-icon{
+    padding:0px;
+    margin:0px;
+    color:rgb(13, 202, 240);
+    font-size: 3rem;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
 .play-button-icon:hover{
     font-size: 4rem;
-    color:white;
+    color:rgb(13, 202, 240);;
 }
+
+.watchlist-button-icon:hover{
+    font-size: 4rem;
+    color:rgb(13, 202, 240);;
+
+}
+
+.comments-button-icon:hover{
+
+    font-size: 4rem;
+    color:gold;
+
+}
+
 
 @media only screen and (max-width: 800px) {
     .movie-detail{

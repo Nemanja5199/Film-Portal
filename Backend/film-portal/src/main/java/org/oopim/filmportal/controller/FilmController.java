@@ -23,12 +23,12 @@ public class FilmController {
 
     @GetMapping
     public ResponseEntity<List<Film>> getAllFilms() {
-        return new ResponseEntity<>(filmService.getAllFilms(), HttpStatus.OK);
+        return new ResponseEntity<List<Film>>(filmService.getAllFilms(), HttpStatus.OK);
     }
 
     @GetMapping("/{imdbId}")
     public ResponseEntity<Optional<Film>> getFilmById(@PathVariable String imdbId) {
-        return new ResponseEntity<>(filmService.getFilmById(imdbId), HttpStatus.OK);
+        return new ResponseEntity<Optional<Film>>(filmService.getFilmById(imdbId), HttpStatus.OK);
     }
 
 }

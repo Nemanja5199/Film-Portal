@@ -2,7 +2,7 @@ import './Hero.css';
 import Carousel from 'react-material-ui-carousel';
 import { Paper } from '@mui/material';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCirclePlay } from '@fortawesome/free-solid-svg-icons';
+import { faCirclePlay, faCirclePlus, faComment } from '@fortawesome/free-solid-svg-icons';
 import {Link, useNavigate} from "react-router-dom";
 import Button from 'react-bootstrap/Button';
 
@@ -41,8 +41,23 @@ const Hero = ({movies}) => {
                                             </div>
                                         </Link>
 
+                                        <Link to={`/watchList/`}>
+                                            <div className="watchlist-button-icon-container">
+                                                <FontAwesomeIcon className="watchlist-button-icon"
+                                                    icon = {faCirclePlus}
+                                                />
+                                            </div>
+                                        </Link>
+
                                         <div className="movie-review-button-container">
-                                            <Button variant ="info" onClick={() => reviews(movie.imdbId)} >Reviews</Button>
+
+                                        <Link to={`/Reviews/${movie.imdbId}`}>
+                                                    <div className="comments-button-icon-container">
+                                                        <FontAwesomeIcon className="comments-button-icon"
+                                                            icon={faComment}
+                                                        />
+                                                    </div>
+                                                </Link>
                                         </div>
                                     </div>
                                 </div>
