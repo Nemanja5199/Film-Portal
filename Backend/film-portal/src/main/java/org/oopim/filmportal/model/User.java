@@ -22,7 +22,7 @@ public class User {
     private String email;
     private String password;
     @DocumentReference
-    private List<Film> films;
+    private List<Film> films = new ArrayList<>();
     @DocumentReference
     private List<Role> roles = new ArrayList<>();
 

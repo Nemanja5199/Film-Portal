@@ -1,6 +1,5 @@
 package org.oopim.filmportal.service;
 
-import org.bson.types.ObjectId;
 import org.oopim.filmportal.model.Film;
 import org.oopim.filmportal.repository.FilmRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +19,6 @@ public class FilmService {
     }
 
     public Optional<Film> getFilmById(String imdbId) {
-        return filmRepository.findFilmByImdbId(imdbId);
+        return filmRepository.findByImdbId(imdbId);
     }
 }
