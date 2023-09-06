@@ -21,7 +21,6 @@ public class User {
     private String username;
     private String email;
     private String password;
-    private String role;
     @DocumentReference
     private List<Film> films;
     @DocumentReference
@@ -32,7 +31,6 @@ public class User {
         this.username=username;
         this.email=email;
         this.password=password;
-        this.role= "regular";
     }
 
 

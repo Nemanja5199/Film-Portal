@@ -29,7 +29,7 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
 
-        httpSecurity.csrf().disable()
+        httpSecurity.csrf().and().csrf().disable()
                     .exceptionHandling()
                     .authenticationEntryPoint(authEntryPoint)
                     .and()
@@ -37,7 +37,7 @@ public class SecurityConfig {
                     .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                     .and()
                     .authorizeRequests()
-                    .antMatchers("/api/v1/auth/**").permitAll()
+                    .antMatchers("/api/v1/**").permitAll()
                     .anyRequest().authenticated()
                     .and()
                     .httpBasic();
