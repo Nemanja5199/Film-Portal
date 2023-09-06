@@ -49,8 +49,6 @@ const Hero = ({movies}) => {
                                             </div>
                                         </Link>
 
-                                        <div className="movie-review-button-container">
-
                                         <Link to={`/Reviews/${movie.imdbId}`}>
                                                     <div className="comments-button-icon-container">
                                                         <FontAwesomeIcon className="comments-button-icon"
@@ -58,6 +56,10 @@ const Hero = ({movies}) => {
                                                         />
                                                     </div>
                                                 </Link>
+
+                                        <div className="movie-review-button-container">
+
+                                        
                                         </div>
                                     </div>
                                 </div>

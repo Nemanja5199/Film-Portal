@@ -37,7 +37,9 @@ const RegisterPage = () => {
     }
 
     try {
-      const response = await api.post('/api/v1/register', registrationData);
+      const response = await api.post('/api/v1/auth/register', registrationData);
+
+      console.log(registrationData);
 
       console.log('Registration successful!', response.data);
 
@@ -47,7 +49,15 @@ const RegisterPage = () => {
       console.error('Registration failed:', error);
 
       if (error.response && error.response.data) {
-        setRegistrationError(error.response.data);
+        // Check if the response is a string error message
+        if (typeof error.response.data === 'string') {
+          setRegistrationError(error.response.data);
+        } else if (error.response.data.message) {
+          // Handle cases where error.response.data is an object with a message property
+          setRegistrationError(error.response.data.message);
+        } else {
+          setRegistrationError('Registration failed. Please try again later.');
+        }
       } else {
         setRegistrationError('Registration failed. Please try again later.');
       }
