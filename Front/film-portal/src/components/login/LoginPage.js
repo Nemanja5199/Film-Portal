@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import './LoginPage.css'; // Import your CSS file for custom styling
 import api from '../../api/axiosConfig'; // Import the 'api' Axios instance from your custom axiosConfig.js
-
+import { setCookie } from '../../cookieUtils/cookieUtils';
 const LoginPage = () => {
   // Define state variables to store the user's input and role
   const [formData, setFormData] = useState({
@@ -26,16 +26,42 @@ const LoginPage = () => {
       const response = await api.post('/api/v1/auth/login', formData);
 
       if (response.status === 200) {
-        // Update the user's role to 'RegUser'
-        setUserRole('RegUser');
         
-        // Store the username in a cookie
-        const username = formData.username;
-        document.cookie = `username=${username}; path=/`; // Set a cookie named 'username'
+        
+       try{
+        
+        const response2 = await api.get(`/api/v1/users/${formData.username}`);
+        
 
-        // Redirect the user to the home page upon successful login
+        if(response2.status === 200){
+
+
+          
+          const userData = response2.data;
+          console.log(response2.data);
+          const username = userData.username;
+          const roleName = userData.roles[0].name;
+
+          setCookie('username', username, 1); // Expires in 1 year
+          setCookie('role', roleName, 1); // Expires in 1 year
+
         
-        navigate('/');
+
+
+        }
+       }
+
+       catch (error){
+
+        console.error('Error geting user data:', error);
+      setErrorMessage('Please try again later.');
+
+       }
+       
+
+       
+        
+       navigate('/');
 
         window.location.reload();
       } else {

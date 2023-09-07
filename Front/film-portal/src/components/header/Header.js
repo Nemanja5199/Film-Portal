@@ -1,28 +1,18 @@
 import React from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import './Header.css';
-import { checkUsernameCookie } from '../../cookieUtils/cookieUtils';
+import { checkRoleCookie, getCookie } from '../../cookieUtils/cookieUtils'; // Assuming you have functions to check the role cookie and get cookie values
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faVideoSlash, faUser } from "@fortawesome/free-solid-svg-icons";
 import { Button, Navbar, Nav, Container, Dropdown } from 'react-bootstrap';
 
 const Header = () => {
-  const getCookieValue = (name) => {
-    const cookies = document.cookie.split(';');
-    for (let i = 0; i < cookies.length; i++) {
-      const cookie = cookies[i].trim();
-      if (cookie.startsWith(`${name}=`)) {
-        return cookie.substring(name.length + 1);
-      }
-    }
-    return '';
-  };
-
-  const isLoggedIn = checkUsernameCookie();
-  const username = isLoggedIn ? getCookieValue('username') : 'Username';
+  const userRole = checkRoleCookie(); // Modify this to use your function to check the role cookie
+  const username = getCookie('username'); // Modify 'username' to match the name of your username cookie
 
   const handleLogout = () => {
-    // Delete the username cookie by setting its expiration date to a past date
+    // Delete the role and username cookies by setting their expiration date to a past date
+    document.cookie = 'role=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
     document.cookie = 'username=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
 
     // Refresh the page to reflect the logged-out state
@@ -44,21 +34,21 @@ const Header = () => {
           >
             <NavLink className="nav-link" to="/">Home</NavLink>
 
-            {isLoggedIn && (
-    <NavLink className="nav-link" to="/watchList">
-      Watch List
-    </NavLink>
-  )}
+            {userRole === 'USER' && (
+              <NavLink className="nav-link" to="/watchList">
+                Watch List
+              </NavLink>
+            )}
           </Nav>
-          {isLoggedIn ? (
-           <Dropdown className="dropdowm-nav">
-             <Dropdown.Toggle variant="outline-info" id="dropdown-basic">
-               <FontAwesomeIcon icon={faUser} /> <span className="username">{username}</span>
-             </Dropdown.Toggle>
-             <Dropdown.Menu className="dropdown-menu">
-               <Dropdown.Item onClick={handleLogout}>Logout</Dropdown.Item>
-             </Dropdown.Menu>
-           </Dropdown>
+          {userRole === 'USER' ? (
+            <Dropdown className="dropdowm-nav">
+              <Dropdown.Toggle variant="outline-info" id="dropdown-basic">
+                <FontAwesomeIcon icon={faUser} /> <span className="username">{username}</span>
+              </Dropdown.Toggle>
+              <Dropdown.Menu className="dropdown-menu">
+                <Dropdown.Item onClick={handleLogout}>Logout</Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
           ) : (
             <>
               <Button variant="outline-info" className="me-2">
