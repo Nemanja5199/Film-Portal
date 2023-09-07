@@ -10,6 +10,8 @@ import Reviews from './components/reviews/Reviews';
 import NotFound from './components/notFound/NotFound';
 import LoginPage from './components/login/LoginPage';
 import RegisterPage from './components/register/RegisterPage';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
 
@@ -73,6 +75,7 @@ function App() {
             <Route path="*" element = {<NotFound/>}></Route>
           </Route>
       </Routes>
+      <ToastContainer />
 
     </div>
   );
