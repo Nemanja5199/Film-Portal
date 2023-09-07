@@ -2,9 +2,19 @@
 import React, { useState, useEffect } from 'react';
 import './WatchList.css'; // Import your CSS file
 import api from '../../api/axiosConfig'; // Import your Axios configuration
-import { getCookie } from '../../cookieUtils/cookieUtils'; // Import your cookie utility function
+import { getCookie, checkRoleCookie } from '../../cookieUtils/cookieUtils'; // Import your cookie utility function
+import { Navigate } from 'react-router-dom';
 
 const WatchList = () => {
+
+
+    
+  const userRole = checkRoleCookie();
+
+  console.log(userRole);
+  if (userRole === 'UnregUser') {
+    return <Navigate to="/" />;
+  }
   const [movies, setMovies] = useState([]);
   const username = getCookie('username'); // Get the username from the cookie
 

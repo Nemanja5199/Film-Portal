@@ -1,9 +1,18 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, Navigate } from 'react-router-dom';
 import './RegisterPage.css';
 import api from '../../api/axiosConfig';
+import { setCookie, checkRoleCookie } from '../../cookieUtils/cookieUtils';
 
 const RegisterPage = () => {
+
+
+  const userRole = checkRoleCookie();
+
+  
+  if (userRole === 'USER') {
+    return <Navigate to="/" />;
+  }
   const navigate = useNavigate();
 
   const [registrationData, setRegistrationData] = useState({

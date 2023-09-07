@@ -1,16 +1,24 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, Navigate } from 'react-router-dom';
 import './LoginPage.css'; // Import your CSS file for custom styling
 import api from '../../api/axiosConfig'; // Import the 'api' Axios instance from your custom axiosConfig.js
-import { setCookie } from '../../cookieUtils/cookieUtils';
+import { setCookie, checkRoleCookie } from '../../cookieUtils/cookieUtils';
 const LoginPage = () => {
+
+
+
+  const userRole = checkRoleCookie();
+
+  // If the role cookie exists, redirect to another page (e.g., home page)
+  if (userRole === 'USER') {
+    return <Navigate to="/" />;
+  }
   // Define state variables to store the user's input and role
   const [formData, setFormData] = useState({
     username: '',
     password: '',
   });
 
-  const [userRole, setUserRole] = useState('UnregUser'); // Initialize user role
 
   // Define a state variable to store any error messages
   const [errorMessage, setErrorMessage] = useState('');
