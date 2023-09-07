@@ -12,6 +12,8 @@ import LoginPage from './components/login/LoginPage';
 import RegisterPage from './components/register/RegisterPage';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import WatchList from './components/watchList/WatchList'; // Assuming WatchList.js is in the same directory
+
 
 function App() {
 
@@ -72,6 +74,7 @@ function App() {
             <Route path="/Reviews/:movieId" element ={<Reviews getMovieData = {getMovieData} movie={movie} reviews ={reviews} setReviews = {setReviews} />}></Route>
             <Route path="/login/" element={<LoginPage/>}></Route>
             <Route path="/register/" element={<RegisterPage/>}></Route>
+            <Route path="/watchList/" element = {<WatchList/>}></Route>
             <Route path="*" element = {<NotFound/>}></Route>
           </Route>
       </Routes>
