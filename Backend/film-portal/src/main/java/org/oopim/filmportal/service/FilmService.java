@@ -21,4 +21,13 @@ public class FilmService {
     public Optional<Film> getFilmById(String imdbId) {
         return filmRepository.findByImdbId(imdbId);
     }
+
+    public Film updateFilm(Film film) {
+        try {
+            // Save the updated film to the database
+            return filmRepository.save(film);
+        } catch (Exception ex) {
+            throw new RuntimeException("Failed to update film: " + ex.getMessage());
+        }
+    }
 }

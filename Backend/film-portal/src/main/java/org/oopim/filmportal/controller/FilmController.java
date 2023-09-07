@@ -62,4 +62,35 @@ public class FilmController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+    @DeleteMapping("/deleteUserFilm")
+    public ResponseEntity<User> deleteUserFilm(@RequestParam String username, @RequestParam String imdbId) {
+        try {
+            Optional<User> userOptional = userService.getUserByUsername(username);
+
+            if (userOptional.isPresent()) {
+                User user = userOptional.get();
+                List<Film> userFilms = user.getFilms();
+
+                // Find the film to be removed from the user's watchlist
+                Optional<Film> filmToRemove = userFilms.stream()
+                        .filter(film -> film.getImdbId().equals(imdbId))
+                        .findFirst();
+
+                if (filmToRemove.isPresent()) {
+                    // Remove the film from the user's watchlist
+                    userFilms.remove(filmToRemove.get());
+                    user = userService.updateUser(user);
+
+                    return new ResponseEntity<>(user, HttpStatus.OK);
+                } else {
+                    return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+                }
+            } else {
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            }
+        } catch (Exception ex) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 }
