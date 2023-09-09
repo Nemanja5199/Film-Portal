@@ -40,7 +40,7 @@ const Header = () => {
               </NavLink>
             )}
           </Nav>
-          {userRole === 'USER' ? (
+          {userRole === 'USER' || userRole === 'ADMIN' ? (
             <Dropdown className="dropdowm-nav">
               <Dropdown.Toggle variant="outline-info" id="dropdown-basic">
                 <FontAwesomeIcon icon={faUser} /> <span className="username">{username}</span>

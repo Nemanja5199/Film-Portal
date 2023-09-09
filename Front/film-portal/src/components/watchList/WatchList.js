@@ -43,7 +43,7 @@ const WatchList = () => {
   const removeFromWatchlist = async (imdbId) => {
     try {
       // Make the request to remove the movie from the user's watchlist
-      await api.delete(`/api/v1/films/removeFromWatchlist?username=${username}&imdbId=${imdbId}`);
+      await api.delete(`/api/v1/films/deleteUserFilm?username=${username}&imdbId=${imdbId}`);
 
       // Update the movies state to reflect the removal
       setMovies((prevMovies) => prevMovies.filter((movie) => movie.imdbId !== imdbId));

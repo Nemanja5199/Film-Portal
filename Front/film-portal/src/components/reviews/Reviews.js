@@ -1,98 +1,113 @@
-import {useEffect, useRef} from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import api from '../../api/axiosConfig';
-import {useParams} from 'react-router-dom';
-import {Container, Row, Col} from 'react-bootstrap';
+import { useParams } from 'react-router-dom';
+import { Container, Row, Col, Button } from 'react-bootstrap'; // Import Bootstrap components
+import { getCookie } from '../../cookieUtils/cookieUtils';
 import ReviewForm from '../reviewForm/ReviewForm';
 
-import React from 'react'
+const Reviews = ({ getMovieData, movie, reviews, setReviews }) => {
+  const revText = useRef();
+  let params = useParams();
+  const movieId = params.movieId;
+  const username = getCookie('username');
+  const userRole = getCookie('role');
+  
 
-const Reviews = ({getMovieData,movie,reviews,setReviews}) => {
+  useEffect(() => {
+    getMovieData(movieId);
+  }, []);
 
-    const revText = useRef();
-    let params = useParams();
-    const movieId = params.movieId;
+  // Function to handle comment removal
+  const handleRemoveComment = async (id) => {
+    try {
+      
+      console.log(id);
+      const response = await api.delete(`/api/v1/reviews/${movieId}/${id}?username=${username}`);
+      if (response.status === 200) {
+        // If the delete request was successful, update the comments list without reloading
+        setReviews((prevReviews) => prevReviews.filter((review) => review.id !== id));
+      }
+    } catch (err) {
+      console.error(err);
+    } 
+  };
 
+  const addReview = async (e) =>{
+    e.preventDefault();
 
-    useEffect(()=>{
-        getMovieData(movieId);
-    },[])
+    const rev = revText.current;
 
-    const addReview = async (e) =>{
-        e.preventDefault();
-
-        const rev = revText.current;
-
-        try
-        {
-            const response = await api.post("/api/v1/reviews",{reviewBody:rev.value,imdbId:movieId});
-            console
-            
-
-            const updatedReviews = [...reviews, {body:rev.value}];
-    
-            rev.value = "";
-    
-            setReviews(updatedReviews);
-        }
-        catch(err)
-        {
-            console.error(err);
-        }
+    try
+    {
+        const response = await api.post("/api/v1/reviews",{reviewBody:rev.value,imdbId:movieId});
+        console
         
 
+        const updatedReviews = [...reviews, {body:rev.value}];
 
+        rev.value = "";
 
+        setReviews(updatedReviews);
     }
+    catch(err)
+    {
+        console.error(err);
+    }
+    
 
-  return (
-    <Container>
-        <Row>
-            <Col><h3>Reviews</h3></Col>
-        </Row>
-        <Row className="mt-2">
-            <Col>
-                <img src={movie?.poster} alt="" />
-            </Col>
-            <Col>
-                {
-                    <>
-                        <Row>
-                            <Col>
-                                <ReviewForm handleSubmit={addReview} revText={revText} labelText = "Write a Review?" />  
-                            </Col>
-                        </Row>
-                        <Row>
-                            <Col>
-                                <hr />
-                            </Col>
-                        </Row>
-                    </>
-                }
-                {
-                    reviews?.map((r) => {
-                        return(
-                            <>
-                                <Row>
-                                    <Col>{r.body}</Col>
-                                </Row>
-                                <Row>
-                                    <Col>
-                                        <hr />
-                                    </Col>
-                                </Row>                                
-                            </>
-                        )
-                    })
-                }
-            </Col>
-        </Row>
-        <Row>
-            <Col>
-                <hr />
-            </Col>
-        </Row>        
-    </Container>
-  )
+
+
 }
 
-export default Reviews
+    return (
+      <Container>
+        <Row>
+          <Col><h3>Reviews</h3></Col>
+        </Row>
+        <Row className="mt-2">
+          <Col>
+            <img src={movie?.poster} alt="" className="img-fluid rounded" />
+          </Col>
+          <Col>
+            <Row>
+              <Col>
+                {userRole === 'USER' && (
+                  <ReviewForm handleSubmit={addReview} revText={revText} labelText="Write a Review?" />
+                )}
+              </Col>
+            </Row>
+            <Row>
+              <Col>
+                <hr />
+              </Col>
+            </Row>
+            {reviews?.map((r, index) => (
+              <div key={index}>
+                <Row>
+                  <Col>{r.body}</Col>
+                  {userRole === 'ADMIN' && (
+                    <Col className="text-right">
+                      {/* Render the remove button only for ADMIN */}
+                      <Button variant="danger" onClick={() => handleRemoveComment(r.id)}>Remove</Button>
+                    </Col>
+                  )}
+                </Row>
+                <Row>
+                  <Col>
+                    <hr />
+                  </Col>
+                </Row>
+              </div>
+            ))}
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+            <hr />
+          </Col>
+        </Row>
+      </Container>
+    )
+  }
+  
+  export default Reviews;

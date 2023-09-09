@@ -49,7 +49,7 @@ function App() {
 
         setReviews(singleMovie.reviews);
 
-        console.log(response.data);
+        console.log(singleMovie.reviews);
         
 
     } 
