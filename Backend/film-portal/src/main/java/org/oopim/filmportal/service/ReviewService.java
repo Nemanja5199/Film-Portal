@@ -1,5 +1,6 @@
 package org.oopim.filmportal.service;
 
+import org.bson.types.ObjectId;
 import org.oopim.filmportal.model.Film;
 import org.oopim.filmportal.model.Review;
 import org.oopim.filmportal.repository.ReviewRepository;
@@ -21,7 +22,7 @@ public class ReviewService {
 
 
 
-    public Review createReview(String reviewBody, String imdbId) {
+    public String createReview(String reviewBody, String imdbId) {
         Review review = reviewRepository.insert(new Review(reviewBody, LocalDateTime.now(), LocalDateTime.now()));
 
         mongoTemplate.update(Film.class)
@@ -29,7 +30,7 @@ public class ReviewService {
                 .apply(new Update().push("reviews").value(review))
                 .first();
 
-        return review;
+        return review.getId().toString();
     }
 }
 
