@@ -32,7 +32,7 @@ public class ReviewController {
 
     @PostMapping
     public ResponseEntity<String> createReview(@RequestBody Map<String, String> payload) {
-        return new ResponseEntity<String>(reviewService.createReview(payload.get("reviewBody"), payload.get("imdbId")), HttpStatus.CREATED);
+        return new ResponseEntity<>(reviewService.createReview(payload.get("reviewBody"), payload.get("imdbId")), HttpStatus.CREATED);
     }
 
     @DeleteMapping("/{imdbId}/{id}")

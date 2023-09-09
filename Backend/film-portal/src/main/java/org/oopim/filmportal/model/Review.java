@@ -1,9 +1,11 @@
 package org.oopim.filmportal.model;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.bson.types.ObjectId;
+import org.oopim.filmportal.service.ObjectIdToStringSerializer;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -16,6 +18,7 @@ import java.time.LocalDateTime;
 public class Review {
 
     @Id
+    @JsonSerialize(using = ObjectIdToStringSerializer.class)
     private ObjectId id;
     private String body;
     private LocalDateTime created;
