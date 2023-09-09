@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import api from '../../api/axiosConfig';
 import { useParams } from 'react-router-dom';
-import { Container, Row, Col, Button } from 'react-bootstrap'; // Import Bootstrap components
+import { Container, Row, Col, Button } from 'react-bootstrap'; 
 import { getCookie } from '../../cookieUtils/cookieUtils';
 import ReviewForm from '../reviewForm/ReviewForm';
 
@@ -17,14 +17,16 @@ const Reviews = ({ getMovieData, movie, reviews, setReviews }) => {
     getMovieData(movieId);
   }, []);
 
-  // Function to handle comment removal
+  
   const handleRemoveComment = async (id) => {
     try {
       
       console.log(id);
       const response = await api.delete(`/api/v1/reviews/${movieId}/${id}?username=${username}`);
       if (response.status === 200) {
-        // If the delete request was successful, update the comments list without reloading
+
+
+        
         setReviews((prevReviews) => prevReviews.filter((review) => review.id !== id));
       }
     } catch (err) {
@@ -87,7 +89,6 @@ const Reviews = ({ getMovieData, movie, reviews, setReviews }) => {
                   <Col>{r.body}</Col>
                   {userRole === 'ADMIN' && (
                     <Col className="text-right">
-                      {/* Render the remove button only for ADMIN */}
                       <Button variant="danger" onClick={() => handleRemoveComment(r.id)}>Remove</Button>
                     </Col>
                   )}

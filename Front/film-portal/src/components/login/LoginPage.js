@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate, Navigate } from 'react-router-dom';
-import './LoginPage.css'; // Import your CSS file for custom styling
-import api from '../../api/axiosConfig'; // Import the 'api' Axios instance from your custom axiosConfig.js
+import './LoginPage.css'; 
+import api from '../../api/axiosConfig'; 
 import { setCookie, checkRoleCookie } from '../../cookieUtils/cookieUtils';
 const LoginPage = () => {
 
@@ -9,24 +9,24 @@ const LoginPage = () => {
 
   const userRole = checkRoleCookie();
 
-  // If the role cookie exists, redirect to another page (e.g., home page)
+  
   if (userRole === 'USER') {
     return <Navigate to="/" />;
   }
-  // Define state variables to store the user's input and role
+ 
   const [formData, setFormData] = useState({
     username: '',
     password: '',
   });
 
 
-  // Define a state variable to store any error messages
+ 
   const [errorMessage, setErrorMessage] = useState('');
 
-  // Access the history object for redirection
+  
   const navigate = useNavigate();
 
-  // Function to handle form submission
+ 
   const handleSubmit = async (e) => {
     e.preventDefault();
     
@@ -50,8 +50,10 @@ const LoginPage = () => {
           const username = userData.username;
           const roleName = userData.roles[0].name;
 
-          setCookie('username', username, 1); // Expires in 1 year
-          setCookie('role', roleName, 1); // Expires in 1 year
+
+          // Podesavanje kolacica
+          setCookie('username', username, 1); 
+          setCookie('role', roleName, 1); 
 
         
 
@@ -81,7 +83,7 @@ const LoginPage = () => {
     }
   };
 
-  // Function to update form data when the user types
+  
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({
@@ -90,6 +92,8 @@ const LoginPage = () => {
     });
   };
 
+
+ 
   return (
     <div className="login-container">
       <div className="login-form">

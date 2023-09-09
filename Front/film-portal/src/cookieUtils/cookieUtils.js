@@ -3,10 +3,10 @@ export const checkUsernameCookie = () => {
     for (let i = 0; i < cookies.length; i++) {
       const cookie = cookies[i].trim();
       if (cookie.startsWith('username=')) {
-        return true; // 'username' cookie exists
+        return true; 
       }
     }
-    return false; // 'username' cookie doesn't exist
+    return false; 
   };
 
 
@@ -22,7 +22,7 @@ export const checkUsernameCookie = () => {
 
 
 
-// Function to get the value of a cookie by its name
+
 export function getCookie(name) {
   const cookies = document.cookie.split(';');
   for (let i = 0; i < cookies.length; i++) {
@@ -34,10 +34,10 @@ export function getCookie(name) {
   return '';
 }
 
-// Function to check the user's role based on the role cookie
+
 export function checkRoleCookie() {
-  const role = getCookie('role'); // Modify 'role' to match the name of your role cookie
-  return role || 'UnregUser'; // Default to 'UnregUser' if the role cookie is not set
+  const role = getCookie('role'); 
+  return role || 'UnregUser'; 
 }
 
 

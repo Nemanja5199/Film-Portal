@@ -52,17 +52,17 @@ const RegisterPage = () => {
 
       console.log('Registration successful!', response.data);
 
-      // Redirect to the login page
+      
       navigate('/login');
     } catch (error) {
       console.error('Registration failed:', error);
 
       if (error.response && error.response.data) {
-        // Check if the response is a string error message
+       
         if (typeof error.response.data === 'string') {
           setRegistrationError(error.response.data);
         } else if (error.response.data.message) {
-          // Handle cases where error.response.data is an object with a message property
+         
           setRegistrationError(error.response.data.message);
         } else {
           setRegistrationError('Registration failed. Please try again later.');
@@ -72,6 +72,7 @@ const RegisterPage = () => {
       }
     }
   };
+
 
   return (
     <div className="register-container">

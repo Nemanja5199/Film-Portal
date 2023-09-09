@@ -12,7 +12,7 @@ import LoginPage from './components/login/LoginPage';
 import RegisterPage from './components/register/RegisterPage';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import WatchList from './components/watchList/WatchList'; // Assuming WatchList.js is in the same directory
+import WatchList from './components/watchList/WatchList'; 
 
 
 function App() {

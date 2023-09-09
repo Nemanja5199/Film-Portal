@@ -1,21 +1,23 @@
 import React from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import './Header.css';
-import { checkRoleCookie, getCookie } from '../../cookieUtils/cookieUtils'; // Assuming you have functions to check the role cookie and get cookie values
+import { checkRoleCookie, getCookie } from '../../cookieUtils/cookieUtils'; 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faVideoSlash, faUser } from "@fortawesome/free-solid-svg-icons";
 import { Button, Navbar, Nav, Container, Dropdown } from 'react-bootstrap';
 
 const Header = () => {
-  const userRole = checkRoleCookie(); // Modify this to use your function to check the role cookie
-  const username = getCookie('username'); // Modify 'username' to match the name of your username cookie
+
+  
+  const userRole = checkRoleCookie();
+  const username = getCookie('username'); 
 
   const handleLogout = () => {
-    // Delete the role and username cookies by setting their expiration date to a past date
+    // Brisanje kolacica
     document.cookie = 'role=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
     document.cookie = 'username=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
 
-    // Refresh the page to reflect the logged-out state
+    
     window.location.reload();
   };
 

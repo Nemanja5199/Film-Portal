@@ -1,8 +1,8 @@
 // WatchList.js
 import React, { useState, useEffect } from 'react';
 import './WatchList.css'; // Import your CSS file
-import api from '../../api/axiosConfig'; // Import your Axios configuration
-import { getCookie, checkRoleCookie } from '../../cookieUtils/cookieUtils'; // Import your cookie utility function
+import api from '../../api/axiosConfig'; 
+import { getCookie, checkRoleCookie } from '../../cookieUtils/cookieUtils'; 
 import { Navigate } from 'react-router-dom';
 
 const WatchList = () => {
@@ -16,10 +16,10 @@ const WatchList = () => {
     return <Navigate to="/" />;
   }
   const [movies, setMovies] = useState([]);
-  const username = getCookie('username'); // Get the username from the cookie
+  const username = getCookie('username'); 
 
   useEffect(() => {
-    // Make the request to get the user's data
+    
     const fetchData = async () => {
       try {
         const response = await api.get(`/api/v1/users/${username}`);
@@ -42,10 +42,10 @@ const WatchList = () => {
 
   const removeFromWatchlist = async (imdbId) => {
     try {
-      // Make the request to remove the movie from the user's watchlist
+     
       await api.delete(`/api/v1/films/deleteUserFilm?username=${username}&imdbId=${imdbId}`);
 
-      // Update the movies state to reflect the removal
+     
       setMovies((prevMovies) => prevMovies.filter((movie) => movie.imdbId !== imdbId));
     } catch (error) {
       console.error('Error removing from watchlist:', error);
