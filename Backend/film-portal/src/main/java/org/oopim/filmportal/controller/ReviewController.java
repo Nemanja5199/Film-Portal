@@ -62,6 +62,7 @@ public class ReviewController {
 
                         if (reviewToRemove.isPresent()) {
                             reviews.remove(reviewToRemove.get());
+                            reviewService.deleteReviewById(id);
                             filmService.updateFilm(film);
 
                             return new ResponseEntity<>("Review removed from the film.", HttpStatus.OK);

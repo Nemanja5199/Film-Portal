@@ -32,5 +32,9 @@ public class ReviewService {
 
         return review.getId().toString();
     }
+
+    public void deleteReviewById(ObjectId id) {
+        reviewRepository.deleteReviewById(id);
+    }
 }
 
