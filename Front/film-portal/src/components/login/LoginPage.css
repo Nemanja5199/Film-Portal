@@ -1,6 +1,5 @@
-/* Login.css */
 
-/* Center the login container */
+
 .login-container {
     display: flex;
     justify-content: center;
@@ -9,31 +8,31 @@
     background-color: black;
   }
   
-  /* Style for the login form */
+  
   .login-form {
     width: 300px;
     padding: 20px;
     background-color: rgb(0, 0, 0);
-    margin-bottom: 150px; /* Adjust margin to move the form up */
+    margin-bottom: 150px; 
     border-radius: 10px;
   }
   
-  /* Gold-colored login header */
+ 
   .login-header {
     color: gold;
   }
   
-  /* Center the login button */
+ 
   .login-button {
     display: flex;
     justify-content: center;
   }
   
-  /* Adjust input box size */
+  
   .form-control {
-    width: 100%; /* Adjust this value to control the width */
-    background-color: black; /* Set input box background color */
-    color: white; /* Set text color */
-    border-color: gold; /* Set border color */
+    width: 100%; 
+    background-color: black; 
+    color: white; 
+    border-color: gold; 
   }
   

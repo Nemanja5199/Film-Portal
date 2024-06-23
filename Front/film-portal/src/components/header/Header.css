@@ -6,13 +6,13 @@
 
 
 
-/* Style the links within buttons */
+
 .btn-link-style {
   color: rgb(13, 202, 240);
   text-decoration: none;
 }
 
-/* Style the links within buttons when hovered */
+
 .btn-link-style:hover {
   color: darkblue;
 }
@@ -24,35 +24,35 @@
 
 /* Header.css */
 
-/* Style for the navbar */
+
 .navbar {
   background-color: #343a40;
 }
 
-/* Style for the brand/logo */
+
 .navbar-brand {
   color: gold;
   font-size: 1.5rem;
 }
 
-/* Style for the navigation links */
+
 .nav-link {
   color: white !important;
 }
 
-/* Style for the dropdown toggle */
+
 .dropdown-toggle {
   color: rgb(13, 202, 240) !important;
   border-color: gold !important;
 }
 
-/* Style for the dropdown menu items */
+
 .dropdown-item {
   color: rgb(255, 255, 255)  !important;
   background-color: rgb(255, 255, 255) !important;
 }
 
-/* Style for the dropdown menu items on hover */
+
 .dropdown-item:hover {
   background-color: #ffc107 !important;
   color: #ffffff !important;
@@ -62,7 +62,7 @@
   margin-right: 4%;
 }
 
-/* Style for the username in the dropdown menu */
+
 .dropdown-menu .username {
   color: rgb(0, 0, 0) !important;
 }
@@ -71,12 +71,12 @@
   color: black !important;
 }
 
-/* Change the background color of the outer dropdown box */
+
 .dropdowm-nav .dropdown-menu {
   background-color: #343a40 !important;
 }
 
-/* Change the background color of the individual items */
+
 .dropdowm-nav .dropdown-menu .dropdown-item {
   background-color: #343a40 !important;
 }
